@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  urlWeb: 'https://enovelsoluciones.sharepoint.com/sites/prueba_daniel_yisel/tareas'
 };
 
 /*
