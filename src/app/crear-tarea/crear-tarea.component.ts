@@ -1,24 +1,49 @@
+import { ClassGetter } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { User } from '../interfaces/usuario';
+import { SpService } from '../servicios/sp.service';
 
 @Component({
   selector: 'app-crear-tarea',
   templateUrl: './crear-tarea.component.html',
-  styleUrls: ['./crear-tarea.component.sass']
+  styleUrls: ['./crear-tarea.component.sass'],
 })
 export class CrearTareaComponent implements OnInit {
+  usuario: User;
+  allowedUsers = [];
+  users = [];
 
-  usuario: User
+  constructor(public servicio: SpService) {}
 
-  constructor() { }
-
-  ngOnInit(): void {
+  async ngOnInit() {
     this.obtenerUsuario();
+    this.consultarUsurarios();
   }
 
   obtenerUsuario() {
     this.usuario = JSON.parse(sessionStorage.getItem('usuario'));
-    console.log('hola usuario', this.usuario);
   }
 
+  consultarUsurarios() {
+    this.servicio
+      .consultarUsuarios()
+      .then((res) => {
+        this.allowedUsers = res;
+        this.users = this.allowedUsers
+          .map((element) => element.usuario)
+          this.validarPermisos();
+      })
+      .catch((err) => console.log(err));
+  }
+
+  validarPermisos() {
+    let usuarioPermitido = this.users.filter((s) => {
+      return s.Id === this.usuario.id;
+    });
+    if(usuarioPermitido.length === 0) {
+      alert('Este usuario no tiene permisos')
+    }
+  }
 }
+
+ 
