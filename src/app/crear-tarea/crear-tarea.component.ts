@@ -1,4 +1,3 @@
-import { ClassGetter } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { User } from '../interfaces/usuario';
 import { SpService } from '../servicios/sp.service';
@@ -6,7 +5,7 @@ import { SpService } from '../servicios/sp.service';
 @Component({
   selector: 'app-crear-tarea',
   templateUrl: './crear-tarea.component.html',
-  styleUrls: ['./crear-tarea.component.sass'],
+  styleUrls: ['./crear-tarea.component.css'],
 })
 export class CrearTareaComponent implements OnInit {
   usuario: User;

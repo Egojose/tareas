@@ -5,11 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CrearTareaComponent } from './crear-tarea/crear-tarea.component';
 import { SpService } from './servicios/sp.service';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CrearTareaComponent
+    CrearTareaComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
