@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { SpService } from '../servicios/sp.service';
 
 @Component({
   selector: 'app-ver-tarea',
@@ -7,9 +8,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VerTareaComponent implements OnInit {
 
-  constructor() { }
+  @Input() tareas = [];
+
+  constructor(public servicio: SpService) { }
 
   ngOnInit(): void {
+  }
+
+  guardarTareas() {
+    let tareas: Object;
+    let arr = []
+    this.tareas.forEach(({descripcion, fechaEstimada:fecha_culminancion, estado}) => {
+      tareas = {
+        descripcion,
+        fecha_culminancion,
+        estado
+      }
+      this.servicio.agregarTareas(tareas).then(
+        (respuesta) => {
+          alert('Se creó correctamente');
+
+        }
+      ).catch(
+        (err) => console.log('error al guardar tareas', err)
+      )
+    })
+    console.log(arr)
   }
 
 }

@@ -2,26 +2,25 @@
     <div class="agregar">
         <div class="add">
             <div class="addItem">
-                <a href="">
-                    <h2>+ Añadir Tarea</h2>
-                </a>
+                <h2>+ Añadir Tarea</h2>
             </div>
 
         </div>
         <div class="item">
             <div class="inputTarea">
-                <textarea name="" id="" cols="30" rows="1" placeholder="Escribe aquí tu tarea, pronto será aprobada ..." ></textarea>
+                <textarea name="" id="" cols="30" rows="1"
+                    placeholder="Escribe aquí tu tarea, pronto será aprobada ..." [(ngModel)]="descripcionTarea"></textarea>
             </div>
-            <a  href="">
-                <img src="./assets/icon/ok.png" alt="" srcset="">
-            </a>
-            
-    
+            <button type="button" class="btn btn-primary" (click)="agregarTarea()">
+                Agregar
+                <!-- <img src="./assets/icon/ok.png" alt="" srcset=""> -->
+            </button>
+
+
         </div>
 
     </div>
-   
-
 </div>
-
-<app-ver-tarea></app-ver-tarea>
+<ng-container *ngIf="tareasArray.length > 0">
+    <app-ver-tarea [tareas]="tareasArray"></app-ver-tarea>
+</ng-container>

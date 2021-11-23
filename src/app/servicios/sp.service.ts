@@ -39,4 +39,9 @@ export class SpService {
     .getAll();
     return tareas;
   }
+
+  agregarTareas(tarea: Object) {
+    let respuesta = this.obtenerConfiguracion().web.lists.getByTitle(environment.listaTareas).items.add(tarea);
+    return respuesta;
+  } 
 }

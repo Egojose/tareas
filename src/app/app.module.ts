@@ -7,6 +7,8 @@ import { CrearTareaComponent } from './crear-tarea/crear-tarea.component';
 import { SpService } from './servicios/sp.service';
 import { NavbarComponent } from './navbar/navbar.component';
 import { VerTareaComponent } from './ver-tarea/ver-tarea.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -17,7 +19,8 @@ import { VerTareaComponent } from './ver-tarea/ver-tarea.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
   ],
   providers: [SpService],
   bootstrap: [AppComponent]
