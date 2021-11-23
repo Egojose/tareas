@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { CrearTareaComponent } from './crear-tarea/crear-tarea.component';
 import { SpService } from './servicios/sp.service';
 import { NavbarComponent } from './navbar/navbar.component';
+import { VerTareaComponent } from './ver-tarea/ver-tarea.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CrearTareaComponent,
-    NavbarComponent
+    NavbarComponent,
+    VerTareaComponent
   ],
   imports: [
     BrowserModule,
