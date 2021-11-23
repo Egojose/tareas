@@ -12,6 +12,14 @@ body{
     transition: 0.5s;
 }
 
+@media (max-width:900px) {
+
+    .navBar{
+        display: none;
+    }
+    
+}
+
 /* Logo */
 
 .icon {

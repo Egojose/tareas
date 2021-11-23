@@ -1,0 +1,148 @@
+/* Sin Scroll */
+
+::-webkit-scrollbar {display: none;}
+
+.container{
+    margin-top: 2vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 60vh;
+    /* background: rebeccapurple; */
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+
+.container .agregar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 10%;
+    width: 90%;
+    /* background: blue; */
+    border-radius: 5px;
+
+}
+
+.container .agregar .add{
+    
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: 90%;
+    height: 90%;
+    /* background: pink; */
+
+}
+
+.container .agregar .add .addItem{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 30%;
+    background: #034C8C;
+    border-radius: 4px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    
+
+}
+
+.container .agregar .add .addItem a{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+    color: #f2f2f2;
+
+}
+
+
+/* Tareas agregadas */
+.container .tareasAgregadas{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 85%;
+    width: 90%;
+    
+}
+
+.container .tareasAgregadas .tarea{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+    
+    height: auto;
+    /* max-height: 90%; */
+    height: 90%;
+    width: 90%;
+    background: #034C8C;
+    border-radius: 4px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    overflow-y: hidden;
+    overflow: scroll;
+
+}
+
+
+.container .tareasAgregadas .tarea .tareaEnCurso{
+    width: 95%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    /* background: yellow; */
+    margin-top: 5px;
+    
+
+}
+
+.container .tareasAgregadas .tarea .tareaEnCurso .status{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90%;
+    width: 10%;
+    /* background: rebeccapurple; */
+    color: white;
+    font-size: 10%;
+}
+
+.container .tareasAgregadas .tarea .tareaEnCurso .textoTarea{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90%;
+    width:  75%;
+    background: white;
+    border-radius: 4px;
+
+}
+
+
+
+
+.container .tareasAgregadas .tarea .tareaEnCurso .check{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90%;
+    width: 10% ;
+    /* background: blue; */
+}
+
+.container .tareasAgregadas .tarea .tareaEnCurso .check img{
+    height: 70%;
+    width: auto;
+}
+
+
