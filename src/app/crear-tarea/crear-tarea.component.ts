@@ -1,4 +1,7 @@
+import { ClassGetter } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { element } from 'protractor';
 import { User } from '../interfaces/usuario';
 import { SpService } from '../servicios/sp.service';
 
@@ -13,8 +16,9 @@ export class CrearTareaComponent implements OnInit {
   users = [];
   tareasArray = [];
   descripcionTarea: string;
+  aprobador: User;
 
-  constructor(public servicio: SpService) {}
+  constructor(public servicio: SpService, public toaster: ToastrService) {}
 
   async ngOnInit() {
     this.obtenerUsuario();
@@ -32,8 +36,18 @@ export class CrearTareaComponent implements OnInit {
         this.allowedUsers = res;
         this.users = this.allowedUsers.map((element) => element.usuario);
         this.validarPermisos();
+        this.obtenerAprobador();
       })
       .catch((err) => console.log(err));
+  }
+
+  obtenerAprobador() {
+    let data;
+    data = this.allowedUsers.filter((i) => i.usuario.Id === this.usuario.id);
+    const aprobadores = data[0].aprobadores;
+    const { Id: id, EMail: email, Title: name } = aprobadores;
+    this.aprobador = { id, name, email };
+    console.log(this.aprobador);
   }
 
   validarPermisos() {
@@ -51,15 +65,41 @@ export class CrearTareaComponent implements OnInit {
     let tarea = {
       descripcion: this.descripcionTarea,
       fechaEstimada: date,
-      estado: 'pendiente'
+      estado: 'pendiente',
+      aprobadorId: this.aprobador.id,
+      responsableId: this.aprobador.id
     };
 
     this.tareasArray.push(tarea);
     this.descripcionTarea = '';
   }
 
+  obtenerFormatoFecha(date) {
+    var d = new Date(date),
+    month = '' + (d.getMonth() + 1),
+    day = '' + d.getDate(),
+    year = d.getFullYear();
+    
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+    return [year, month, day].join('-');
+    } 
 
+  showSuccess(mensaje: string) {
+    this.toaster.success(mensaje, 'Correcto');
+  }
 
+  showWarning(mensaje: string) {
+    this.toaster.warning(mensaje, 'Cuidado');
+  }
+
+  showError(mensaje: string) {
+    this.toaster.error(mensaje, 'Error');
+  }
+
+  showInfo(mensaje: string) {
+    this.toaster.info(mensaje, 'Información');
+  }
 }
 
  

@@ -20,10 +20,22 @@
           <div class="textoTarea">
             <h4>{{tarea.descripcion}}</h4>
           </div>
+
+          <div class="action-container">
+            <ng-container *ngIf="esSolicitante; else elseTemplate">
+              <button type="button" class="btn btn-success" [disabled]="!habilitarBtn" (click)="completar()">OK</button>
+              <!-- <a class="check" href="#">
+                <img src="./assets/icon/check.png" alt="" />
+              </a> -->
+            </ng-container>
+            <ng-template #elseTemplate>
+              <button type="button" class="btn btn-primary">Aprobar</button>
+            </ng-template>
+          </div>
   
-          <a class="check" href="#">
+          <!-- <a class="check" href="#">
             <img src="./assets/icon/check.png" alt="" />
-          </a>
+          </a> -->
         </div>
       </ng-container>
       

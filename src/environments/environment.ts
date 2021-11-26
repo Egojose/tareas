@@ -6,7 +6,8 @@ export const environment = {
   production: false,
   urlWeb: 'https://enovelsoluciones.sharepoint.com/sites/prueba_daniel_yisel/tareas',
   listaTareas: 'tareas',
-  listaUsuarios: 'users'
+  listaUsuarios: 'users',
+  listaAprobadores: 'aprobadores'
 };
 
 /*
