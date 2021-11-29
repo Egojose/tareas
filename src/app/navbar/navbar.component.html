@@ -5,20 +5,20 @@
         </div>
     </a>
     <div class="menu">
-        <a class="itemNavbarText" href="#">
+        <a class="itemNavbarText">
             <div class="iconNav">
                 <img src="./assets/icon/agregar.png" alt="" srcset="">
             </div>
             <div class="textNav">
-                <a href="">Crear tareas</a>
+                <a routerLink="/crear-tarea">Crear tareas</a>
             </div>  
         </a>
-        <a class="itemNavbarText" href="#">
+        <a class="itemNavbarText">
             <div class="iconNav">
                 <img src="./assets/icon/pendientes.png" alt="" srcset="">
             </div>
             <div class="textNav">
-                <a href="">Mis pendientes</a>
+                <a (click)="irApendientes()">Mis pendientes</a>
             </div>  
             
         </a>

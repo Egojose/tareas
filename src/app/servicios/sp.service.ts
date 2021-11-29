@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { sp } from "@pnp/sp/presets/all";
-import { EINVAL } from 'constants';
+import { sp, IEmailProperties } from "@pnp/sp/presets/all";
 import { from } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
@@ -53,8 +52,13 @@ export class SpService {
 
   consultarTareasXusuario(usuario:number) {
     let respuesta = this.obtenerConfiguracion().web.lists.getByTitle(environment.listaTareas).items
-    .select('*', 'aprobador/Title, aprobador/EMail, aprobador/Id')
-    .expand('aprobador').filter("AuthorId eq " + usuario + "and completada eq 0").getAll();
+    .select('*', 'aprobador/Title, aprobador/EMail, aprobador/Id', 'Author/Title')
+    .expand('aprobador, Author').filter("AuthorId eq " + usuario + "and completada eq 0").getAll();
+    return respuesta;
+  }
+
+  consultarTareaXid(id: number) {
+    let respuesta = this.obtenerConfiguracion().web.lists.getByTitle(environment.listaTareas).items.getById(id).get();
     return respuesta;
   }
 
@@ -62,4 +66,14 @@ export class SpService {
     let respuesta = this.obtenerConfiguracion().web.lists.getByTitle(environment.listaTareas).items.getById(id).update(tarea);
     return respuesta;
   }
+
+  eliminarTarea(id: number) {
+    let respuesta = this.obtenerConfiguracion().web.lists.getByTitle(environment.listaTareas).items.getById(id).delete();
+    return respuesta;
+  }
+  
+  async enviarCorreo(ObjEmail: IEmailProperties): Promise<any> {
+    const respuesta = await this.obtenerConfiguracion().utility.sendEmail(ObjEmail);
+    return respuesta;
+}
 }

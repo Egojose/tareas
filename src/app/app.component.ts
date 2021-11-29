@@ -10,12 +10,16 @@ import { SpService } from './servicios/sp.service';
 export class AppComponent implements OnInit {
   title = 'tareas-app';
   usuario: User;
+  allowedUsers = [];
+  users = [];
+  aprobador: User;
 
   constructor(public servicio: SpService) {}
 
 
   ngOnInit() {
     this.obtenerInformacionUsuario();
+    this.consultarUsurarios()
   }
 
   obtenerInformacionUsuario() {
@@ -27,5 +31,26 @@ export class AppComponent implements OnInit {
         console.log(this.usuario)
       }
     )
+  }
+
+  consultarUsurarios() {
+    this.servicio
+      .consultarUsuarios()
+      .then((res) => {
+        this.allowedUsers = res;
+        this.users = this.allowedUsers.map((element) => element.usuario);
+        this.obtenerAprobador();
+      })
+      .catch((err) => console.log(err));
+  }
+
+  obtenerAprobador() {
+    let data;
+    data = this.allowedUsers.filter((i) => i.usuario.Id === this.usuario.id);
+    const aprobadores = data[0].aprobadores;
+    const { Id: id, EMail: email, Title: name } = aprobadores;
+    this.aprobador = { id, name, email };
+    sessionStorage.setItem('aprobador', JSON.stringify(this.aprobador))
+    console.log(this.aprobador);
   }
 }

@@ -1,0 +1,27 @@
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Solicitante</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Fecha culmminación</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let tarea of tareas, index as i">
+                <th scope="row">{{i+1}}</th>
+                <td>{{tarea.descripcion}}</td>
+                <td>{{tarea.Author.Title}}</td>
+                <td>{{tarea.estado}}</td>
+                <td>{{tarea.fecha_culminancion | date:'dd/MM/yyyy'}}</td>
+                <td> 
+                    <button type="button" class="btn btn-primary" (click)="verTarea(tarea)">Ver</button> 
+                    <button type="button" class="btn btn-danger" (click)="eliminar(tarea.Id, i)">Eliminar</button> 
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

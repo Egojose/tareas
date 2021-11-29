@@ -27,6 +27,7 @@ export class CrearTareaComponent implements OnInit {
 
   obtenerUsuario() {
     this.usuario = JSON.parse(sessionStorage.getItem('usuario'));
+    this.aprobador = JSON.parse(sessionStorage.getItem('aprobador'));
   }
 
   consultarUsurarios() {
@@ -36,19 +37,19 @@ export class CrearTareaComponent implements OnInit {
         this.allowedUsers = res;
         this.users = this.allowedUsers.map((element) => element.usuario);
         this.validarPermisos();
-        this.obtenerAprobador();
+        // this.obtenerAprobador();
       })
       .catch((err) => console.log(err));
   }
 
-  obtenerAprobador() {
-    let data;
-    data = this.allowedUsers.filter((i) => i.usuario.Id === this.usuario.id);
-    const aprobadores = data[0].aprobadores;
-    const { Id: id, EMail: email, Title: name } = aprobadores;
-    this.aprobador = { id, name, email };
-    console.log(this.aprobador);
-  }
+  // obtenerAprobador() {
+  //   let data;
+  //   data = this.allowedUsers.filter((i) => i.usuario.Id === this.usuario.id);
+  //   const aprobadores = data[0].aprobadores;
+  //   const { Id: id, EMail: email, Title: name } = aprobadores;
+  //   this.aprobador = { id, name, email };
+  //   console.log(this.aprobador);
+  // }
 
   validarPermisos() {
     let usuarioPermitido = this.users.filter((s) => {
@@ -67,7 +68,7 @@ export class CrearTareaComponent implements OnInit {
       fechaEstimada: date,
       estado: 'pendiente',
       aprobadorId: this.aprobador.id,
-      responsableId: this.aprobador.id
+      responsableId: this.usuario.id
     };
 
     this.tareasArray.push(tarea);

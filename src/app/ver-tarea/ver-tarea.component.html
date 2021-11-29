@@ -29,7 +29,7 @@
               </a> -->
             </ng-container>
             <ng-template #elseTemplate>
-              <button type="button" class="btn btn-primary">Aprobar</button>
+              <button type="button" class="btn btn-primary" (click)="aprobar()">Aprobar</button>
             </ng-template>
           </div>
   
@@ -39,8 +39,10 @@
         </div>
       </ng-container>
       
-      <button type="button" class="btn btn-success" (click)="guardarTareas()">Guardar</button>
-      
+      <ng-container *ngIf="mostrarBtn">
+        <button type="button" class="btn btn-success" (click)="guardarTareas()">Guardar</button>
+      </ng-container>
+
     </div>
   </div>
 </div>
